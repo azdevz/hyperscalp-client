@@ -59,6 +59,7 @@ meme_bot/
 api/
 *.py
 schema-local.sql
+.env.example
 Dockerfile
 setup.py
 railway.json
