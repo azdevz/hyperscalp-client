@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/azdevz/hyperscalp-client:latest
     container_name: hyperscalp-bot
     restart: unless-stopped
     ports:

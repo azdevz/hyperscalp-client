@@ -49,3 +49,15 @@ dashboard/node_modules/
 dashboard/.next/
 dashboard/.env
 dashboard/.env.local
+
+# --- Public Git IP Protection Exclusions ---
+# Block all raw trading engine source files, builders, and Docker files from public Git tracking.
+# (These remain safe in your local filesystem for building/publishing to GHCR).
+hl_bot/
+meme_bot/
+api/
+*.py
+Dockerfile
+setup.py
+railway.json
+.github/
