@@ -147,70 +147,10 @@ export default function BotControls({
       )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-        {/* Left Column: Network & Strategy */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        {/* Left Column: Strategy */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", justifyContent: "center" }}>
           
-          {/* 1. Network Toggle Segment Controls */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              Network Mode
-            </span>
-            <div style={{
-              display: "flex",
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid var(--border)",
-              borderRadius: "8px",
-              padding: "3px",
-              width: "100%",
-            }}>
-              <button
-                type="button"
-                disabled={loading !== null}
-                onClick={() => toggleMode("demo")}
-                style={{
-                  flex: 1,
-                  padding: "8px 12px",
-                  borderRadius: "6px",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  cursor: loading ? "not-allowed" : "pointer",
-                  border: "none",
-                  transition: "all 0.2s",
-                  background: currentMode === "demo" ? "rgba(245,158,11,0.15)" : "transparent",
-                  color: currentMode === "demo" ? "var(--accent-amber)" : "var(--text-secondary)",
-                  borderWidth: currentMode === "demo" ? "1px" : "0",
-                  borderColor: "rgba(245,158,11,0.3)",
-                  boxShadow: currentMode === "demo" ? "0 0 10px rgba(245,158,11,0.05)" : "none",
-                }}
-              >
-                🟡 TESTNET
-              </button>
-              <button
-                type="button"
-                disabled={loading !== null}
-                onClick={() => toggleMode("live")}
-                style={{
-                  flex: 1,
-                  padding: "8px 12px",
-                  borderRadius: "6px",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                  cursor: loading ? "not-allowed" : "pointer",
-                  border: "none",
-                  transition: "all 0.2s",
-                  background: currentMode === "live" ? "rgba(16,185,129,0.15)" : "transparent",
-                  color: currentMode === "live" ? "var(--accent-green)" : "var(--text-secondary)",
-                  borderWidth: currentMode === "live" ? "1px" : "0",
-                  borderColor: "rgba(16,185,129,0.3)",
-                  boxShadow: currentMode === "live" ? "0 0 10px rgba(16,185,129,0.05)" : "none",
-                }}
-              >
-                🟢 MAINNET
-              </button>
-            </div>
-          </div>
-
-          {/* 2. Active Strategy Selector Dropdown */}
+          {/* Active Strategy Selector Dropdown */}
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
               Select Active Strategy

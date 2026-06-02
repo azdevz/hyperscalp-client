@@ -41,10 +41,6 @@ export default function Sidebar({ mode = "testnet", activeStrategy = "Unknown" }
              {activeStrategy}
            </div>
         </div>
-
-        <div className={`mode-badge ${mode}`} style={{ margin: 0 }}>
-          {mode === "mainnet" ? "🟢 MAINNET" : "🟡 TESTNET"}
-        </div>
       </div>
     </aside>
   );
