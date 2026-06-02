@@ -5,7 +5,6 @@ import Sidebar from "@/components/Sidebar";
 import MobileMenu from "@/components/MobileMenu";
 import Header from "@/components/Header";
 import { api } from "@/lib/api";
-import { cookies } from "next/headers";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -25,29 +24,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     if (state.mode) activeMode = state.mode === "live" ? "mainnet" : "testnet";
   } catch {}
 
-  const cookieStore = await cookies();
-  const session = cookieStore.get("session")?.value;
-  const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
-  const isAuthenticated = session === adminPassword;
-
-
   return (
     <html lang="en">
       <body className="bg-slate-950 text-slate-100 antialiased">
-        {isAuthenticated ? (
-          <div className="layout">
-            <MobileMenu />
-            <Sidebar mode={activeMode} activeStrategy={activeStrategyName} />
-            <main className="main-content fade-in">
-              <Header />
-              {children}
-            </main>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center min-h-screen bg-slate-950 w-full">
+        <div className="layout">
+          <MobileMenu />
+          <Sidebar mode={activeMode} activeStrategy={activeStrategyName} />
+          <main className="main-content fade-in">
+            <Header />
             {children}
-          </div>
-        )}
+          </main>
+        </div>
       </body>
     </html>
   );
