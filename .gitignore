@@ -3,6 +3,7 @@
 .env.production
 .env.development
 .env.local
+.env.example
 *.key
 *.pem
 secrets/
