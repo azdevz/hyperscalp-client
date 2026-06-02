@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import MobileMenu from "@/components/MobileMenu";
+import Header from "@/components/Header";
 import { api } from "@/lib/api";
 import { cookies } from "next/headers";
 
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <MobileMenu />
             <Sidebar mode={activeMode} activeStrategy={activeStrategyName} />
             <main className="main-content fade-in">
+              <Header />
               {children}
             </main>
           </div>
