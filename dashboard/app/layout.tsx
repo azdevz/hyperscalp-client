@@ -1,0 +1,46 @@
+// dashboard/app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+import Sidebar from "@/components/Sidebar";
+import MobileMenu from "@/components/MobileMenu";
+import { api } from "@/lib/api";
+import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "HYPER-SCALP-AI Dashboard",
+  description: "Autonomous crypto scalping bot — Hyperliquid Perps + Solana Meme DEX",
+};
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  let activeStrategyName = "Alpha-V1-Momentum";
+  try {
+    const state = await api.getState();
+    const s = state.active_strategy;
+    if (s && typeof s === "object" && s.name) activeStrategyName = s.name;
+  } catch {}
+
+  const cookieStore = await cookies();
+  const session = cookieStore.get("session")?.value;
+  const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+  const isAuthenticated = session === adminPassword;
+
+  return (
+    <html lang="en">
+      <body className="bg-slate-950 text-slate-100 antialiased">
+        {isAuthenticated ? (
+          <div className="layout">
+            <MobileMenu />
+            <Sidebar activeStrategy={activeStrategyName} />
+            <main className="main-content fade-in">
+              {children}
+            </main>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center min-h-screen bg-slate-950 w-full">
+            {children}
+          </div>
+        )}
+      </body>
+    </html>
+  );
+}
