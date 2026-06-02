@@ -141,6 +141,15 @@ def update_strategy_markets(strategy_id: int, payload: StrategyMarketsUpdate):
     return {"ok": True}
 
 
+@router.post("/strategies/{strategy_id}/activate", dependencies=[Depends(require_auth)])
+def activate_strategy(strategy_id: int):
+    """Set all strategies to inactive and activate the chosen strategy."""
+    db.execute("UPDATE strategies SET is_active = false")
+    db.execute("UPDATE strategies SET is_active = true WHERE id = %s", (strategy_id,))
+    return {"ok": True}
+
+
+
 # ── Trades ────────────────────────────────────────────────────────────────────
 
 @router.get("/trades", dependencies=[Depends(require_auth)])

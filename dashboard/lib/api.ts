@@ -145,6 +145,14 @@ export const api = {
   resumeMeme:    () => req<{ ok: boolean }>("/api/state/resume-meme", { method: "POST" }),
   emergencyStop: () => req<{ ok: boolean }>("/api/state/emergency-stop", { method: "POST" }),
   emergencyResume: () => req<{ ok: boolean }>("/api/state/emergency-resume", { method: "POST" }),
+  updateState:   (key: string, value: string) => req<{ ok: boolean }>("/api/state", {
+    method: "POST",
+    body: JSON.stringify({ key, value }),
+  }),
+  activateStrategy: (id: number) => req<{ ok: boolean }>(`/api/strategies/${id}/activate`, {
+    method: "POST",
+  }),
+
 
   // Trades
   getTrades: (params?: { source?: string; symbol?: string; exit_reason?: string; limit?: number; offset?: number }) => {
