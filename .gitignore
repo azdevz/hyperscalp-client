@@ -58,6 +58,7 @@ hl_bot/
 meme_bot/
 api/
 *.py
+schema-local.sql
 Dockerfile
 setup.py
 railway.json
